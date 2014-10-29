@@ -47,23 +47,23 @@ public class CentreDeTri implements Serializable
         return m_listEquipement;
     }
     
-    public void ajouterStation(Point point, Dimension dimension, double capacite, Color couleur, Image image)
+    public void ajouterStation(Point p, Dimension d, double capacite, Color c, Image image)
     {
         //Station station = new Station(point, dimension, capacite, couleur, image);
         //ajouterEquipement(station);
     }
     
-    public void ajouterEntreeUsine(Point point, Dimension dimension, double capacite, Color couleur, Image image)
+    public void ajouterEntreeUsine(Point p, Dimension d, double capacite, Color c, Image image)
     {
         //EntreeUsine entree = new EntreeUsine(point, dimension, capacite, couleur, image);
     }
     
-    public void ajouterJonction(Point point, Dimension dimension, double capacite, Color couleur, Image image)
+    public void ajouterJonction(Point p, Dimension d, double capacite, Color c, Image image)
     {
         
     }
     
-    public void ajouterSortieUsine(Point point, Dimension dimension, double capacite, Color couleur, Image image)
+    public void ajouterSortieUsine(Point p, Dimension d, double capacite, Color c, Image image)
     {
         
     }
