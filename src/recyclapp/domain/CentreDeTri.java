@@ -89,6 +89,7 @@ public class CentreDeTri implements Serializable
     */
     public boolean validerPosition(Point p, Dimension d)
     {
+        
         for(Equipement equipement : getListEquipement())
         {
             boolean chevauchementHorizontal = false;
