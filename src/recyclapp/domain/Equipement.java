@@ -71,4 +71,14 @@ public class Equipement
     {
         m_marqueur = true;
     }
+    
+    public Point getCoordonnees()
+    {
+        return m_coordonnees;
+    }
+    
+    public Dimension getDimensions()
+    {
+        return m_dimensions;
+    }
 }
