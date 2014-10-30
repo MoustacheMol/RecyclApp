@@ -64,17 +64,28 @@ public class CentreDeTri implements Serializable
         }
     }
     
-    public void ajouterEntreeUsine(Point p, Dimension d, double capacite, Color c, Image image)
+    /*
+    * méthode pour ajouter une entrée
+    */
+    public void ajouterEntreeUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
-        //EntreeUsine entree = new EntreeUsine(point, dimension, capacite, couleur, image);
+        if(validerPosition(p, d))
+        {
+            EntreeUsine entree = new EntreeUsine(p, d, capacite, c, image);
+            ajouterEquipement(entree);
+        }
+        else
+        {
+            // exception : la position de l'équipement à ajouter n'est pas valide
+        }
     }
     
-    public void ajouterJonction(Point p, Dimension d, double capacite, Color c, Image image)
+    public void ajouterJonction(Point p, Dimension d, float capacite, Color c, Image image)
     {
         
     }
     
-    public void ajouterSortieUsine(Point p, Dimension d, double capacite, Color c, Image image)
+    public void ajouterSortieUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
         
     }
@@ -89,10 +100,11 @@ public class CentreDeTri implements Serializable
         
     }
     
+    /*
     public Equipement getEquipement(Point point)
     {
         return new EntreeUsine();
-    }
+    }*/
     
     /*
     * Renvoie true si une position est libre pour placer un équipement à partir
@@ -100,7 +112,13 @@ public class CentreDeTri implements Serializable
     */
     public boolean validerPosition(Point p, Dimension d)
     {
-        
+        // On renvoie false si une des coordonnées est négative
+        if(p.x < 0 || p.y < 0)
+            return false;
+        // On renvoie false si la largeur ou la longueur passé en arg. est plus 
+        // grande que la largeur ou la longueur du centre de tri
+        if(d.height > getDimensions().height || d.width > getDimensions().width)
+            return false;
         for(Equipement equipement : getListEquipement())
         {
             boolean chevauchementHorizontal = false;
