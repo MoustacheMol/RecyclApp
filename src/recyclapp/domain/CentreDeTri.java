@@ -65,7 +65,8 @@ public class CentreDeTri implements Serializable
     }
     
     /*
-    * méthode pour ajouter une entrée
+    * méthode pour ajouter une entrée à l'usine
+    * précondition: la position et la dimension doit être valide
     */
     public void ajouterEntreeUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
@@ -80,9 +81,21 @@ public class CentreDeTri implements Serializable
         }
     }
     
+    /*
+    * méthode pour ajouter une jonction
+    * précondition: la position et la dimension doit être valide
+    */
     public void ajouterJonction(Point p, Dimension d, float capacite, Color c, Image image)
     {
-        
+        if(validerPosition(p,d))
+        {
+            Jonction jonction = new Jonction(p, d, capacite, c, image);
+            ajouterEquipement(jonction);
+        }
+        else
+        {
+            // exception : la position de l'équipement à ajouter n'est pas valide
+        }
     }
     
     public void ajouterSortieUsine(Point p, Dimension d, float capacite, Color c, Image image)
