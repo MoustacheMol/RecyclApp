@@ -24,7 +24,19 @@ public class Equipement
     private Color m_couleur;
     private boolean m_marqueur;
     private Image m_img;
-    private List<Convoyeur> m_voisins;    
+    private List<Convoyeur> m_voisins;
+    
+    public Equipement(Point p, Dimension d, float capacite, Color c, Image image)
+    {
+        m_coordonnees = p;
+        m_dimensions = d;
+        m_capaciteMax = capacite;
+        m_couleur = c;
+        m_img = image;
+        
+        m_utilisation = 0;
+        m_marqueur = false;
+    }
     
     public void ChangerPosition(Point p)
     {
