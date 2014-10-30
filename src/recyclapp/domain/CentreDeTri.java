@@ -73,7 +73,7 @@ public class CentreDeTri implements Serializable
         
     }
     
-    public void deplacerEquipement()
+    public void deplacerEquipement(Equipement equipement, Point p)
     {
         
     }
@@ -83,8 +83,33 @@ public class CentreDeTri implements Serializable
         return new EntreeUsine();
     }
     
-    public boolean validerPosition(Point point, Dimension dimensions)
+    /*
+    * Renvoie true si une position est libre pour placer un équipement à partir
+    * d'un point et d'une dimension donné.
+    */
+    public boolean validerPosition(Point p, Dimension d)
     {
+        for(Equipement equipement : getListEquipement())
+        {
+            boolean chevauchementHorizontal = false;
+            boolean chevauchementVertical = false;
+            Point currentCoord = equipement.getCoordonnees();
+            Dimension currentDimensions = equipement.getDimensions();
+            // Vérification si la position donnée chevauche horizontalement
+            // la position de l'équipement courrant
+            if( (p.x >= currentCoord.x && p.x <= currentCoord.x + currentDimensions.width) 
+                    || (p.x + d.width >= currentCoord.x && p.x + d.width <= currentCoord.x + currentDimensions.width))
+                chevauchementHorizontal = true;
+            // Vérification si la position donnée chevauche verticalement la
+            // position de l'équipement courrant
+            if( (p.y >= currentCoord.y && p.y <= currentCoord.y + currentDimensions.height)
+                    || (p.y + d.height >= currentCoord.y && p.y + d.height <= currentCoord.y + currentDimensions.height))
+                chevauchementVertical = true;
+            // S'il y a chevauchement vertical et horizontal, la position n'est pas valide
+            if(chevauchementHorizontal && chevauchementVertical)
+                return false;
+        }
+        // la position donnée ne chevauche aucun équipement
         return true;
     }
     
