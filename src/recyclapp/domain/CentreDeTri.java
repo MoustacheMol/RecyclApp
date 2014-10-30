@@ -47,10 +47,21 @@ public class CentreDeTri implements Serializable
         return m_listEquipement;
     }
     
-    public void ajouterStation(Point p, Dimension d, double capacite, Color c, Image image)
+    /*
+    * méthode pour ajouter une station dans le centre de tri.
+    * précondition: la position et la dimension doit être valide
+    */
+    public void ajouterStation(Point p, Dimension d, float capacite, Color c, Image image)
     {
-        //Station station = new Station(point, dimension, capacite, couleur, image);
-        //ajouterEquipement(station);
+        if(validerPosition(p, d))
+        {
+            Station station = new Station(p, d, capacite, c, image);
+            ajouterEquipement(station);
+        }
+        else
+        {
+            // exception : la position de l'équipement à ajouter n'est pas valide
+        }
     }
     
     public void ajouterEntreeUsine(Point p, Dimension d, double capacite, Color c, Image image)
@@ -99,12 +110,14 @@ public class CentreDeTri implements Serializable
             // Vérification si la position donnée chevauche horizontalement
             // la position de l'équipement courrant
             if( (p.x >= currentCoord.x && p.x <= currentCoord.x + currentDimensions.width) 
-                    || (p.x + d.width >= currentCoord.x && p.x + d.width <= currentCoord.x + currentDimensions.width))
+                    || (p.x + d.width >= currentCoord.x && p.x + d.width <= currentCoord.x + currentDimensions.width)
+                    || (p.x <= currentCoord.x && p.x + d.width >= currentCoord.x + currentDimensions.width))
                 chevauchementHorizontal = true;
             // Vérification si la position donnée chevauche verticalement la
             // position de l'équipement courrant
             if( (p.y >= currentCoord.y && p.y <= currentCoord.y + currentDimensions.height)
-                    || (p.y + d.height >= currentCoord.y && p.y + d.height <= currentCoord.y + currentDimensions.height))
+                    || (p.y + d.height >= currentCoord.y && p.y + d.height <= currentCoord.y + currentDimensions.height)
+                    || (p.y <= currentCoord.y && p.y + d.height >= currentCoord.y + currentDimensions.height))
                 chevauchementVertical = true;
             // S'il y a chevauchement vertical et horizontal, la position n'est pas valide
             if(chevauchementHorizontal && chevauchementVertical)
