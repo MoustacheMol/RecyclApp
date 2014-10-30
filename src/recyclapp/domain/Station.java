@@ -5,6 +5,11 @@
  */
 package recyclapp.domain;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Point;
+
 /**
  *
  * @author mblanchet
@@ -13,4 +18,9 @@ public class Station extends Equipement
 {
     public final int MAX_ENTREE = 1;
     public final int MAX_SORTIE = Integer.MAX_VALUE;
+    
+    public Station(Point p, Dimension d, float capacite, Color c, Image image)
+    {
+        super(p, d, capacite, c, image);
+    }
 }
