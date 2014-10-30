@@ -98,9 +98,21 @@ public class CentreDeTri implements Serializable
         }
     }
     
+    /*
+    * méthode pour ajouter une sortie à l'usine
+    * précondition: la position et la dimension doit être valide
+    */
     public void ajouterSortieUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
-        
+        if(validerPosition(p, d))
+        {
+            SortieUsine sortie = new SortieUsine(p, d, capacite, c, image);
+            ajouterEquipement(sortie);
+        }
+        else
+        {
+            // exception : la position de l'équipement à ajouter n'est pas valide
+        }
     }
     
     public void supprimerEquipement()
