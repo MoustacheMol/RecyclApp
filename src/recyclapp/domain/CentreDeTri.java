@@ -101,10 +101,21 @@ public class CentreDeTri implements Serializable
     }
     
     /*
+    * méthode pour donner l'équipement au point fourni en arg. S'il n'y a pas
+    * d'équipement au point donné, la méthode renvoie null.
+    */
     public Equipement getEquipement(Point point)
     {
-        return new EntreeUsine();
-    }*/
+        ArrayList<Equipement> listEquipement = getListEquipement();
+        for(int i = 0; i < listEquipement.size(); i++)
+        {
+            Equipement equipement = listEquipement.get(i);
+            if(equipement.getCoordonnees().x == point.x && equipement.getCoordonnees().y == point.y)
+                return equipement;
+        }
+        // Il n'y a pas d'équipement au point donnée
+        return null;
+    }
     
     /*
     * Renvoie true si une position est libre pour placer un équipement à partir
