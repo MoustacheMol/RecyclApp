@@ -5,6 +5,8 @@
  */
 package recyclapp;
 
+import recyclapp.gui.frmRecyclApp;
+
 /**
  *
  * @author mblanchet
@@ -17,7 +19,8 @@ public class RecyclApp
      */
     public static void main(String[] args)
     {
-        // TODO code application logic here
+        frmRecyclApp mainForm = new frmRecyclApp();
+        mainForm.setVisible(true);
     }
     
 }
