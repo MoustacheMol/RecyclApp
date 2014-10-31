@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,7 +24,7 @@ public class Equipement
     private Color m_couleur;
     private boolean m_marqueur;
     private Image m_img;
-    private List<Convoyeur> m_voisins;
+    private ArrayList<Convoyeur> m_voisins;
     
     public Equipement(Point p, Dimension d, float capacite, Color c, Image image)
     {
@@ -36,6 +36,7 @@ public class Equipement
         
         m_utilisation = 0;
         m_marqueur = false;
+        m_voisins =  new ArrayList<Convoyeur>();
     }
     
     public void ChangerPosition(Point p)
@@ -47,6 +48,17 @@ public class Equipement
     {
         Convoyeur c = new Convoyeur(this, dest);
         m_voisins.add(c);
+    }
+    
+    public void enleverConvoyeur(Equipement dest)
+    {
+        for(Convoyeur c : m_voisins)
+        {
+            if(c.GetDestination() == dest)
+            {
+                m_voisins.remove(c);
+            }
+        }
     }
     
     public boolean EstVoisin(Equipement e)
