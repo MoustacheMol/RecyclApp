@@ -1,59 +1,43 @@
 package recyclapp.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.io.Serializable;
+import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-//import recyclapp.domain.drawing.FruitBasketDrawer;
+import recyclapp.controller.RecyclAppViewController;
+import recyclapp.domain.Equipement;
 
-public class DrawingPanel extends JPanel implements Serializable
+public class DrawingPanel extends JPanel
 {
-    public Dimension initialDimension;
-    private frmRecyclApp mainWindow;
-
+    RecyclAppViewController m_controller;
+    
     public DrawingPanel()
     {
-    }
-
-    public DrawingPanel(frmRecyclApp mainWindow)
-    {
-        this.mainWindow = mainWindow;
-        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
-        int width = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
-        setPreferredSize(new Dimension(width, 1));
-        setVisible(true);
-        int height = (int) (width * 0.5);
-        initialDimension = new Dimension(width, height);
+        m_controller = null;
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
-//        if (mainWindow != null)
-//        {
-//            super.paintComponent(g);
-//            FruitBasketDrawer mainDrawer = new FruitBasketDrawer(mainWindow.controller, initialDimension);
-//            mainDrawer.draw(g);
-//        }
+        if (m_controller != null)
+        {
+            super.paintComponent(g);
+            ArrayList<Equipement> equipLst = m_controller.getEquipements();
+            for (Equipement e : equipLst)
+                DrawEquipement(e.GetCouleur(), e.GetCoordonnees(), e.GetDimensions(), g);
+        }
     }
-
-    public frmRecyclApp getMainWindow()
+    
+    public void SetController(RecyclAppViewController c)
     {
-        return mainWindow;
+        m_controller = c;
     }
-
-    public void setMainWindow(frmRecyclApp mainWindow)
+    
+    private void DrawEquipement(Color c, Point p, Dimension d, Graphics g)
     {
-        this.mainWindow = mainWindow;
-    }
-
-    public Dimension getInitialDimension()
-    {
-        return initialDimension;
-    }
-
-    public void setInitialDimension()
-    {
+        g.setColor(c);
+        g.fillRect(p.x, p.y, d.width, d.height);
     }
 }

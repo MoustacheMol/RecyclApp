@@ -96,13 +96,18 @@ public class Equipement
         m_marqueur = true;
     }
     
-    public Point getCoordonnees()
+    public Point GetCoordonnees()
     {
         return m_coordonnees;
     }
     
-    public Dimension getDimensions()
+    public Dimension GetDimensions()
     {
         return m_dimensions;
+    }
+    
+    public Color GetCouleur()
+    {
+        return m_couleur;
     }
 }

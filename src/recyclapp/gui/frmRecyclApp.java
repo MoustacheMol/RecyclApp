@@ -1,8 +1,9 @@
 package recyclapp.gui;
 
+import java.awt.Dimension;
 import java.awt.Point;
-//import fruitBasket.domain.FruitBasketController;
-//import fruitBasket.domain.FruitBasketController.FruitModes;
+import recyclapp.controller.RecyclAppViewController;
+import recyclapp.controller.RecyclAppViewController.TypeEquipement;
 
 /**
  *
@@ -10,12 +11,18 @@ import java.awt.Point;
  */
 public class frmRecyclApp extends javax.swing.JFrame
 {
+    private TypeEquipement m_typeEquipCourant; 
+    private RecyclAppViewController m_controller;
 
     /**
      * Creates new form frmRecyclApp
      */
     public frmRecyclApp()
     {        
+        m_typeEquipCourant = null;
+        m_controller = new RecyclAppViewController();
+        drawingPanel.SetController(m_controller);
+        
         initComponents();
     }
 
@@ -165,44 +172,44 @@ public class frmRecyclApp extends javax.swing.JFrame
     }//GEN-LAST:event_mnuFile_QuitActionPerformed
 
     private void tbtnEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtnEntreeActionPerformed
-       // this.setMode(FruitModes.APPLE);
+        setTypeEquip(TypeEquipement.EntreeUsine);
     }//GEN-LAST:event_tbtnEntreeActionPerformed
 
     private void tbtnSortieActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tbtnSortieActionPerformed
     {//GEN-HEADEREND:event_tbtnSortieActionPerformed
-        //this.setMode(FruitModes.ORANGE);
+        setTypeEquip(TypeEquipement.SortieUsine);
     }//GEN-LAST:event_tbtnSortieActionPerformed
 
     private void drawingPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_drawingPanelMouseClicked
     {//GEN-HEADEREND:event_drawingPanelMouseClicked
-        //if (this.selectedFruitCreationMode == null)
-        //    return;
+        if (m_typeEquipCourant == null)
+            return;
         
-        //Point mousePoint = evt.getPoint();
-        //FruitBasketController.FruitModes actualMode = this.selectedFruitCreationMode;
-        //this.controller.addFruit(actualMode,mousePoint);
-        //drawingPanel.repaint();
+        Dimension defaultDim = new Dimension(50, 50);
+        Point mousePoint = evt.getPoint();
+        m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
+        drawingPanel.repaint();
     }//GEN-LAST:event_drawingPanelMouseClicked
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_drawingPanelMousePressed
     {//GEN-HEADEREND:event_drawingPanelMousePressed
-        //if (this.selectedFruitCreationMode == null)
-        //    return;
+        if (m_typeEquipCourant == null)    
+            return;        
         
-        //Point mousePoint = evt.getPoint();
-        //FruitBasketController.FruitModes actualMode = this.selectedFruitCreationMode;
-        //this.controller.addFruit(actualMode,mousePoint);
-        //drawingPanel.repaint();
+        Dimension defaultDim = new Dimension(50, 50);
+        Point mousePoint = evt.getPoint();
+        m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
+        drawingPanel.repaint();
     }//GEN-LAST:event_drawingPanelMousePressed
 
     private void tbtnJonctionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tbtnJonctionActionPerformed
     {//GEN-HEADEREND:event_tbtnJonctionActionPerformed
-        // TODO add your handling code here:
+        setTypeEquip(TypeEquipement.Jonction);
     }//GEN-LAST:event_tbtnJonctionActionPerformed
 
     private void tbtnStationActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tbtnStationActionPerformed
     {//GEN-HEADEREND:event_tbtnStationActionPerformed
-        // TODO add your handling code here:
+        setTypeEquip(TypeEquipement.Station);
     }//GEN-LAST:event_tbtnStationActionPerformed
 
     /**
@@ -255,10 +262,10 @@ public class frmRecyclApp extends javax.swing.JFrame
         });
     }
     
-//    public void setMode(FruitModes newMode) 
-//    {
-//        this.selectedFruitCreationMode = newMode;
-//    }
+    public void setTypeEquip(TypeEquipement type) 
+    {
+        this.m_typeEquipCourant = type;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgrpFruit;
