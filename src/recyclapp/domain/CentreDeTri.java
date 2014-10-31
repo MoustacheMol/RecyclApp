@@ -167,7 +167,7 @@ public class CentreDeTri implements Serializable
     * Renvoie true si une position est libre pour placer un équipement à partir
     * d'un point et d'une dimension donné.
     */
-    public boolean validerPosition(Point p, Dimension d)
+    private boolean validerPosition(Point p, Dimension d)
     {
         // On renvoie false si une des coordonnées est négative
         if(p.x < 0 || p.y < 0)
@@ -180,8 +180,8 @@ public class CentreDeTri implements Serializable
         {
             boolean chevauchementHorizontal = false;
             boolean chevauchementVertical = false;
-            Point currentCoord = equipement.getCoordonnees();
-            Dimension currentDimensions = equipement.getDimensions();
+            Point currentCoord = equipement.GetCoordonnees();
+            Dimension currentDimensions = equipement.GetDimensions();
             // Vérification si la position donnée chevauche horizontalement
             // la position de l'équipement courrant
             if( (p.x >= currentCoord.x && p.x <= currentCoord.x + currentDimensions.width) 
