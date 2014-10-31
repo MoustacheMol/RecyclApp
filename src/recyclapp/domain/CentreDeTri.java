@@ -115,14 +115,33 @@ public class CentreDeTri implements Serializable
         }
     }
     
-    public void supprimerEquipement()
+    /*
+    * méthode pour retirer un équipement du centre de tri.
+    */
+    public boolean supprimerEquipement(Equipement equipement)
     {
-        
+        // On doit tout d'abord enlever les convoyeurs qui pointe vers l'équipement passé en arg.
+        for(Equipement currentEquip : getListEquipement())
+        {
+            if(currentEquip.EstVoisin(equipement))
+            {
+                currentEquip.enleverConvoyeur(equipement);
+            }
+        }
+        return getListEquipement().remove(equipement);
     }
     
     public void deplacerEquipement(Equipement equipement, Point p)
     {
-        
+        // on valide la nouvelle position avec la dimension de l'équipement et le nouveau point.
+        if(validerPosition(p, equipement.getDimensions()))
+        {
+            equipement.ChangerPosition(p);
+        }
+        else
+        {
+            // exception : la nouvelle position n'est pas valide
+        }
     }
     
     /*
