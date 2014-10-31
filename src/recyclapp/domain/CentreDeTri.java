@@ -51,16 +51,17 @@ public class CentreDeTri implements Serializable
     * méthode pour ajouter une station dans le centre de tri.
     * précondition: la position et la dimension doit être valide
     */
-    public void ajouterStation(Point p, Dimension d, float capacite, Color c, Image image)
+    public boolean ajouterStation(Point p, Dimension d, float capacite, Color c, Image image)
     {
         if(validerPosition(p, d))
         {
             Station station = new Station(p, d, capacite, c, image);
             ajouterEquipement(station);
+            return true;
         }
         else
         {
-            // exception : la position de l'équipement à ajouter n'est pas valide
+            return false;
         }
     }
     
@@ -68,16 +69,17 @@ public class CentreDeTri implements Serializable
     * méthode pour ajouter une entrée à l'usine
     * précondition: la position et la dimension doit être valide
     */
-    public void ajouterEntreeUsine(Point p, Dimension d, float capacite, Color c, Image image)
+    public boolean ajouterEntreeUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
         if(validerPosition(p, d))
         {
             EntreeUsine entree = new EntreeUsine(p, d, capacite, c, image);
             ajouterEquipement(entree);
+            return true;
         }
         else
         {
-            // exception : la position de l'équipement à ajouter n'est pas valide
+            return false;
         }
     }
     
@@ -85,16 +87,17 @@ public class CentreDeTri implements Serializable
     * méthode pour ajouter une jonction
     * précondition: la position et la dimension doit être valide
     */
-    public void ajouterJonction(Point p, Dimension d, float capacite, Color c, Image image)
+    public boolean ajouterJonction(Point p, Dimension d, float capacite, Color c, Image image)
     {
         if(validerPosition(p,d))
         {
             Jonction jonction = new Jonction(p, d, capacite, c, image);
             ajouterEquipement(jonction);
+            return true;
         }
         else
         {
-            // exception : la position de l'équipement à ajouter n'est pas valide
+            return false;
         }
     }
     
@@ -102,16 +105,17 @@ public class CentreDeTri implements Serializable
     * méthode pour ajouter une sortie à l'usine
     * précondition: la position et la dimension doit être valide
     */
-    public void ajouterSortieUsine(Point p, Dimension d, float capacite, Color c, Image image)
+    public boolean ajouterSortieUsine(Point p, Dimension d, float capacite, Color c, Image image)
     {
         if(validerPosition(p, d))
         {
             SortieUsine sortie = new SortieUsine(p, d, capacite, c, image);
             ajouterEquipement(sortie);
+            return true;
         }
         else
         {
-            // exception : la position de l'équipement à ajouter n'est pas valide
+            return false;
         }
     }
     
