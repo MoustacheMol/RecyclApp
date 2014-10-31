@@ -135,17 +135,15 @@ public class CentreDeTri implements Serializable
         return getListEquipement().remove(equipement);
     }
     
-    public void deplacerEquipement(Equipement equipement, Point p)
+    public boolean deplacerEquipement(Equipement equipement, Point p)
     {
         // on valide la nouvelle position avec la dimension de l'équipement et le nouveau point.
         if(validerPosition(p, equipement.getDimensions()))
         {
             equipement.ChangerPosition(p);
+            return true;
         }
-        else
-        {
-            // exception : la nouvelle position n'est pas valide
-        }
+        return false;
     }
     
     /*
