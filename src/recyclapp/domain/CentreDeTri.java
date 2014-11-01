@@ -138,7 +138,7 @@ public class CentreDeTri implements Serializable
     public boolean deplacerEquipement(Equipement equipement, Point p)
     {
         // on valide la nouvelle position avec la dimension de l'équipement et le nouveau point.
-        if(validerPosition(p, equipement.GetDimensions()))
+        if(validerPosition(p, equipement.getDimensions()))
         {
             equipement.ChangerPosition(p);
             return true;
@@ -156,7 +156,7 @@ public class CentreDeTri implements Serializable
         for(int i = 0; i < listEquipement.size(); i++)
         {
             Equipement equipement = listEquipement.get(i);
-            if(equipement.GetCoordonnees().x == point.x && equipement.GetCoordonnees().y == point.y)
+            if(equipement.getCoordonnees().x == point.x && equipement.getCoordonnees().y == point.y)
                 return equipement;
         }
         // Il n'y a pas d'équipement au point donnée
