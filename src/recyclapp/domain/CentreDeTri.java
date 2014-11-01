@@ -218,10 +218,18 @@ public class CentreDeTri implements Serializable
         
     }
     
+    /*
+    * Methode pour savoir si un equipement couvre un point.
+    */
     private boolean equipementCouvrePoint(Equipement equipement, Point point)
     {
+        Point coordEquipement = equipement.GetCoordonnees();
+        Dimension dimEquipement = equipement.GetDimensions();
         
-        return true;
+        if( (point.x >= coordEquipement.x && point.x <= coordEquipement.x + dimEquipement.width)
+                && (point.y >= coordEquipement.y && point.y <= coordEquipement.y + dimEquipement.height))
+            return true;
+        return false;
     }
     
     /*
