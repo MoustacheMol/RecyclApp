@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class RecyclAppViewController
 {
-    CentreDeTri centreDeTri;
-    Equipement selectionCourrante;
+    private CentreDeTri m_centreDeTri;
+    private Equipement selectionCourrante;
     
     public enum TypeEquipement
     {
@@ -24,14 +24,20 @@ public class RecyclAppViewController
         Station
     }
     
+    public RecyclAppViewController()
+    {
+        // TO DO : valider envoie de bon paramètre
+        m_centreDeTri = new CentreDeTri(new Dimension(500, 500));
+    }
+    
     public Dimension getDimensionCentreDeTri()
     {
-        return centreDeTri.getDimensions();
+        return m_centreDeTri.getDimensions();
     }
     
     public ArrayList<Equipement> getEquipements()
     {
-        return centreDeTri.getListEquipement();
+        return m_centreDeTri.getListEquipement();
     }
     
     public void ajouterConvoyeur()
@@ -44,16 +50,16 @@ public class RecyclAppViewController
         switch (t)
         {
             case EntreeUsine:
-                centreDeTri.ajouterEntreeUsine(p, d, 100, Color.red, null);
+                m_centreDeTri.ajouterEntreeUsine(p, d, 100, Color.red, null);
                 break;
             case SortieUsine:
-                centreDeTri.ajouterSortieUsine(p, d, 100, Color.blue, null);
+                m_centreDeTri.ajouterSortieUsine(p, d, 100, Color.blue, null);
                 break;
             case Jonction: 
-                centreDeTri.ajouterJonction(p, d, 100, Color.green, null);
+                m_centreDeTri.ajouterJonction(p, d, 100, Color.green, null);
                 break;
             case Station:
-                centreDeTri.ajouterStation(p, d, 100, Color.orange, null);
+                m_centreDeTri.ajouterStation(p, d, 100, Color.orange, null);
         }
     }
     

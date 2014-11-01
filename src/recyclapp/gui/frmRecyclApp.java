@@ -18,12 +18,12 @@ public class frmRecyclApp extends javax.swing.JFrame
      * Creates new form frmRecyclApp
      */
     public frmRecyclApp()
-    {        
+    {   
+        initComponents();
+        
         m_typeEquipCourant = null;
         m_controller = new RecyclAppViewController();
         drawingPanel.SetController(m_controller);
-        
-        initComponents();
     }
 
     /**
@@ -185,6 +185,7 @@ public class frmRecyclApp extends javax.swing.JFrame
         if (m_typeEquipCourant == null)
             return;
         
+        // TO DO : envoie de bon paramètres
         Dimension defaultDim = new Dimension(50, 50);
         Point mousePoint = evt.getPoint();
         m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
@@ -196,6 +197,7 @@ public class frmRecyclApp extends javax.swing.JFrame
         if (m_typeEquipCourant == null)    
             return;        
         
+        // TO DO : envoie de bon paramètres
         Dimension defaultDim = new Dimension(50, 50);
         Point mousePoint = evt.getPoint();
         m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
