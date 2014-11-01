@@ -13,14 +13,15 @@ public class CentreDeTri implements Serializable
     ArrayList<Equipement> m_listEquipement;
     Dimension m_dimensions;
     
+    // TO DO : valider nécessité constructeur par défaut
     /*
     * Constructeur par défaut
     */
-    public CentreDeTri()
-    {
-        m_listEquipement = new ArrayList<Equipement>();
-        m_dimensions = new Dimension();
-    }
+//    public CentreDeTri()
+//    {
+//        m_listEquipement = new ArrayList<Equipement>();
+//        m_dimensions = new Dimension();
+//    }
     
     /*
     * Constructeur avec dimensions
