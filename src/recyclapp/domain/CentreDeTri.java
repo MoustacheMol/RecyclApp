@@ -203,9 +203,35 @@ public class CentreDeTri implements Serializable
         return true;
     }
     
-    public void ajouterConvoyeur()
+    /*
+    * Méthode pour ajouter un convoyeur entre deux équipements.
+    */
+    public void ajouterConvoyeur(Equipement sortie, Equipement destination)
     {
+        if(sortie.EstVoisin(destination))
+            throw new IllegalArgumentException("La station de destination est déjà connecté à la station courrante.");
         
+        if(nbEquipEnAmont(destination) + 1 > destination.getMaxEntree())
+            throw new IllegalArgumentException("La station de destination ne peut accepter un convoyeur supplémentaire en entrée.");
+        
+        if(sortie.GetNbSorties() + 1 > sortie.getMaxSortie())
+            throw new IllegalArgumentException("Il est impossible d'ajouter une sortie à la station de départ.");
+        
+        sortie.AjouterConvoyeur(destination);
+    }
+    
+    /*
+    * renvoie le nombre d'équipement qui ont la station e comme voisin
+    */
+    public int nbEquipEnAmont(Equipement e)
+    {
+        int nbEquip = 0;
+        for(Equipement current : getListEquipement())
+        {
+            if(current.EstVoisin(e))
+                nbEquip++;
+        }
+        return nbEquip;
     }
     
     public void validerUsine()
