@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author mblanchet
  */
-public class Equipement
+public abstract class Equipement
 {
     private Point m_coordonnees;
     private float m_capaciteMax;
@@ -110,4 +110,8 @@ public class Equipement
     {
         return m_couleur;
     }
+    
+    public abstract int getMaxEntree();
+    
+    public abstract int getMaxSortie();
 }
