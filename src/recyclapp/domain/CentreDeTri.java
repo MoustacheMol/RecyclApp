@@ -157,7 +157,12 @@ public class CentreDeTri implements Serializable
         for(int i = 0; i < listEquipement.size(); i++)
         {
             Equipement equipement = listEquipement.get(i);
-            if(equipement.GetCoordonnees().x == point.x && equipement.GetCoordonnees().y == point.y)
+            int minX = equipement.GetCoordonnees().x;
+            int maxX = minX + equipement.GetDimensions().width;
+            int minY = equipement.GetCoordonnees().y;
+            int maxY = minY + equipement.GetDimensions().height;
+            
+            if(minX <= point.x && point.x <= maxX && minY <= point.y && point.y <= maxY)
                 return equipement;
         }
         // Il n'y a pas d'équipement au point donnée

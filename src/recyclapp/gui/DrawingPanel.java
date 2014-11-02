@@ -25,8 +25,14 @@ public class DrawingPanel extends JPanel
         {
             super.paintComponent(g);
             ArrayList<Equipement> equipLst = m_controller.getEquipements();
+            
+            // dessine tous les équipements
             for (Equipement e : equipLst)
+            {
                 DrawEquipement(e.GetCouleur(), e.GetCoordonnees(), e.GetDimensions(), g);
+                if (e == m_controller.getSelectionCourante())
+                    SelectEquipement(e.GetCoordonnees(), e.GetDimensions(), g);
+            }
         }
     }
     
@@ -39,5 +45,13 @@ public class DrawingPanel extends JPanel
     {
         g.setColor(c);
         g.fillRect(p.x, p.y, d.width, d.height);
+    }
+    
+    private void SelectEquipement(Point p, Dimension d, Graphics g)
+    {
+        g.setColor(Color.black);
+        Point tlc = new Point(p.x - 2, p.y - 2);
+        Dimension selectionDim = new Dimension(d.width + 3, d.height + 3);
+        g.drawRect(tlc.x, tlc.y, selectionDim.width, selectionDim.height);
     }
 }

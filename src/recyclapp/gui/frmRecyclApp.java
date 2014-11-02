@@ -182,13 +182,18 @@ public class frmRecyclApp extends javax.swing.JFrame
 
     private void drawingPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_drawingPanelMouseClicked
     {//GEN-HEADEREND:event_drawingPanelMouseClicked
-        if (m_typeEquipCourant == null)
-            return;
+        Point mousePoint = evt.getPoint();    
         
-        // TO DO : envoie de bon paramètres
-        Dimension defaultDim = new Dimension(50, 50);
-        Point mousePoint = evt.getPoint();
-        m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
+        if (!m_controller.clickUtilisateur(mousePoint)) // l'utilisateur n'a pas cliqué sur un équipement
+        {
+            // ajout d'un équrement sur le plan
+            if (m_typeEquipCourant == null)
+                return;
+
+            // TO DO : envoie de bon paramètres pour les dimensions
+            Dimension defaultDim = new Dimension(50, 50);
+            m_controller.ajouterEquipement(m_typeEquipCourant, mousePoint, defaultDim);
+        }
         drawingPanel.repaint();
     }//GEN-LAST:event_drawingPanelMouseClicked
 

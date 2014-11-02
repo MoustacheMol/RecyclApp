@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class RecyclAppViewController
 {
     private CentreDeTri m_centreDeTri;
-    private Equipement selectionCourrante;
+    private Equipement m_selectionCourrante;
     
     public enum TypeEquipement
     {
@@ -63,8 +63,16 @@ public class RecyclAppViewController
         }
     }
     
-    public void clickUtilisateur(Point p)
+    public boolean clickUtilisateur(Point p)
     {
-        
+        Equipement e = m_centreDeTri.getEquipement(p);        
+        m_selectionCourrante = e;
+            
+        return (e != null);
+    }
+    
+    public Equipement getSelectionCourante()
+    {
+        return m_selectionCourrante;
     }
 }
