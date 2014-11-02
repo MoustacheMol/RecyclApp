@@ -23,4 +23,14 @@ public class SortieUsine extends Equipement
     {
         super(p, d, capacite, c, image);
     }
+    
+    public int getMaxEntree()
+    {
+        return MAX_ENTREE;
+    }
+    
+    public int getMaxSortie()
+    {
+        return MAX_SORTIE;
+    }
 }
