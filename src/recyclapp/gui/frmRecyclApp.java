@@ -1,7 +1,12 @@
 package recyclapp.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Point;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 import recyclapp.controller.RecyclAppViewController;
 import recyclapp.controller.RecyclAppViewController.TypeEquipement;
 
@@ -33,8 +38,7 @@ public class frmRecyclApp extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         bgrpFruit = new javax.swing.ButtonGroup();
         pnlMain = new javax.swing.JPanel();
@@ -45,9 +49,12 @@ public class frmRecyclApp extends javax.swing.JFrame
         tbtnStation = new javax.swing.JToggleButton();
         scrPMain = new javax.swing.JScrollPane();
         drawingPanel = new recyclapp.gui.DrawingPanel();
+        sliZoom = new javax.swing.JSlider();
+        lblZoom = new javax.swing.JLabel();
         mainMenu = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuFile_Open = new javax.swing.JMenuItem();
+        jMGrille = new javax.swing.JMenuItem();
         mnuFile_Quit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,10 +70,8 @@ public class frmRecyclApp extends javax.swing.JFrame
 
         bgrpFruit.add(tbtnEntree);
         tbtnEntree.setText("Entrée Usine");
-        tbtnEntree.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        tbtnEntree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbtnEntreeActionPerformed(evt);
             }
         });
@@ -74,10 +79,8 @@ public class frmRecyclApp extends javax.swing.JFrame
 
         bgrpFruit.add(tbtnSortie);
         tbtnSortie.setText("Sortie Usine");
-        tbtnSortie.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        tbtnSortie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbtnSortieActionPerformed(evt);
             }
         });
@@ -85,10 +88,8 @@ public class frmRecyclApp extends javax.swing.JFrame
 
         bgrpFruit.add(tbtnJonction);
         tbtnJonction.setText("Jonction");
-        tbtnJonction.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        tbtnJonction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbtnJonctionActionPerformed(evt);
             }
         });
@@ -96,10 +97,8 @@ public class frmRecyclApp extends javax.swing.JFrame
 
         bgrpFruit.add(tbtnStation);
         tbtnStation.setText("Station");
-        tbtnStation.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        tbtnStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbtnStationActionPerformed(evt);
             }
         });
@@ -107,27 +106,41 @@ public class frmRecyclApp extends javax.swing.JFrame
 
         pnlMain.add(pnlToolBar, java.awt.BorderLayout.NORTH);
 
-        drawingPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 drawingPanelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 drawingPanelMousePressed(evt);
             }
         });
+
+        sliZoom.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliZoomStateChanged(evt);
+            }
+        });
+
+        lblZoom.setText("Zoom (cm:m)");
 
         javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
         drawingPanel.setLayout(drawingPanelLayout);
         drawingPanelLayout.setHorizontalGroup(
             drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 794, Short.MAX_VALUE)
+            .addGroup(drawingPanelLayout.createSequentialGroup()
+                .addContainerGap(541, Short.MAX_VALUE)
+                .addComponent(lblZoom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sliZoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         drawingPanelLayout.setVerticalGroup(
             drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGroup(drawingPanelLayout.createSequentialGroup()
+                .addGroup(drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sliZoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblZoom, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(0, 515, Short.MAX_VALUE))
         );
 
         scrPMain.setViewportView(drawingPanel);
@@ -139,11 +152,17 @@ public class frmRecyclApp extends javax.swing.JFrame
         mnuFile_Open.setText("Ouvrir");
         mnuFile.add(mnuFile_Open);
 
+        jMGrille.setText("Grille");
+        jMGrille.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMGrilleActionPerformed(evt);
+            }
+        });
+        mnuFile.add(jMGrille);
+
         mnuFile_Quit.setText("Quitter");
-        mnuFile_Quit.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mnuFile_Quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuFile_QuitActionPerformed(evt);
             }
         });
@@ -157,11 +176,11 @@ public class frmRecyclApp extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
@@ -218,6 +237,19 @@ public class frmRecyclApp extends javax.swing.JFrame
     {//GEN-HEADEREND:event_tbtnStationActionPerformed
         setTypeEquip(TypeEquipement.Station);
     }//GEN-LAST:event_tbtnStationActionPerformed
+
+    private void jMGrilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMGrilleActionPerformed
+        // TODO add your handling code here:
+        m_controller.drawGrid();
+        drawingPanel.repaint();
+    }//GEN-LAST:event_jMGrilleActionPerformed
+
+    private void sliZoomStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliZoomStateChanged
+        int scale;
+        scale = sliZoom.getValue();
+        m_controller.setScale(scale);
+        drawingPanel.repaint();
+    }//GEN-LAST:event_sliZoomStateChanged
 
     /**
      * @param args the command line arguments
@@ -277,6 +309,8 @@ public class frmRecyclApp extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgrpFruit;
     private recyclapp.gui.DrawingPanel drawingPanel;
+    private javax.swing.JMenuItem jMGrille;
+    private javax.swing.JLabel lblZoom;
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenuItem mnuFile_Open;
@@ -284,6 +318,7 @@ public class frmRecyclApp extends javax.swing.JFrame
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlToolBar;
     private javax.swing.JScrollPane scrPMain;
+    private javax.swing.JSlider sliZoom;
     private javax.swing.JToggleButton tbtnEntree;
     private javax.swing.JToggleButton tbtnJonction;
     private javax.swing.JToggleButton tbtnSortie;

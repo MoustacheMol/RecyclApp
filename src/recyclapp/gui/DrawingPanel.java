@@ -33,6 +33,12 @@ public class DrawingPanel extends JPanel
                 if (e == m_controller.getSelectionCourante())
                     SelectEquipement(e.GetCoordonnees(), e.GetDimensions(), g);
             }
+            if(m_controller.getDrawGridEnable())
+            {
+                Dimension lesDimensions =  m_controller.getDimensionCentreDeTri();
+            
+                this.drawGrid(lesDimensions, g);
+            }
         }
     }
     
@@ -53,5 +59,23 @@ public class DrawingPanel extends JPanel
         Point tlc = new Point(p.x - 2, p.y - 2);
         Dimension selectionDim = new Dimension(d.width + 3, d.height + 3);
         g.drawRect(tlc.x, tlc.y, selectionDim.width, selectionDim.height);
+    }
+    
+    private void drawGrid(Dimension d, Graphics g)
+    {
+        g.setColor(Color.black);
+        int scale = m_controller.getScale(); //Défaut 10
+        int i = 0;
+        int j = 0;
+        while((i <= d.width && j <= d.height) && scale > 0)
+        {
+            while(j <= d.height)
+            {
+                 g.drawRect(i , j, 40,40);
+                 j += scale;
+            }
+           j = 0;
+           i += scale;
+        }
     }
 }

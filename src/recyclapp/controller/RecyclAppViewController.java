@@ -15,6 +15,9 @@ public class RecyclAppViewController
 {
     private CentreDeTri m_centreDeTri;
     private Equipement m_selectionCourrante;
+    private boolean drawGridEnable = false; 
+    private int firstTime = 0;
+    private int scale = 10;
     
     public enum TypeEquipement
     {
@@ -75,4 +78,34 @@ public class RecyclAppViewController
     {
         return m_selectionCourrante;
     }
+    
+    public boolean getDrawGridEnable()
+    {
+        return this.drawGridEnable;
+    }
+    
+    public void drawGrid()
+    {
+        if(this.firstTime == 0)
+        {
+            this.drawGridEnable = true;
+            this.firstTime = 1;
+        }
+        else
+        {
+            this.drawGridEnable = false;
+            this.firstTime = 0;
+        }
+    }
+    
+    public int getScale()
+    {
+        return this.scale;
+    }
+    
+    public void setScale(int scale)
+    {
+        this.scale = scale;
+    }
+
 }
